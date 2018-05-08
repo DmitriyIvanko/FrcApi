@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -43,6 +45,7 @@ namespace CodeFirstNewDatabaseSample
     {
         public int BlogId { get; set; }
         public string Name { get; set; }
+        public string Url { get; set; }
 
         public virtual List<Post> Posts { get; set; }
     }
@@ -57,10 +60,34 @@ namespace CodeFirstNewDatabaseSample
         public virtual Blog Blog { get; set; }
     }
 
+    public class User
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid UserId { get; set; }
+        public string Username { get; set; }
+        public string DisplayName { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
+    }
+
+    public class Photo
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid PhotoId { get; set; }
+        public byte[] Image { get; set; }
+        [ForeignKey("User")]
+        public Guid UserId { get; set; }
+        public virtual User User { get; set; }
+    }
+
+
     public class BloggingContext : DbContext
     {
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Photo> Photos { get; set; }
 
         public BloggingContext()
             : base("name=BloggingCompactDatabase")

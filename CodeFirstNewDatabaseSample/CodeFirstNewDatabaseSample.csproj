@@ -49,6 +49,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201805081844247_InitialCreate.cs" />
+    <Compile Include="Migrations\201805081844247_InitialCreate.Designer.cs">
+      <DependentUpon>201805081844247_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805081901014_AddUrl.cs" />
+    <Compile Include="Migrations\201805081901014_AddUrl.Designer.cs">
+      <DependentUpon>201805081901014_AddUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805081926166_AddUser.cs" />
+    <Compile Include="Migrations\201805081926166_AddUser.Designer.cs">
+      <DependentUpon>201805081926166_AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805081942399_AddPhoto.cs" />
+    <Compile Include="Migrations\201805081942399_AddPhoto.Designer.cs">
+      <DependentUpon>201805081942399_AddPhoto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,6 +73,19 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805081844247_InitialCreate.resx">
+      <DependentUpon>201805081844247_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081901014_AddUrl.resx">
+      <DependentUpon>201805081901014_AddUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081926166_AddUser.resx">
+      <DependentUpon>201805081926166_AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081942399_AddPhoto.resx">
+      <DependentUpon>201805081942399_AddPhoto.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
