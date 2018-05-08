@@ -1,0 +1,11 @@
+bin
+obj
+packages
+node_modules
+typings
+.awcache
+.vs
+*.user
+*.suo
+/.idea
+Logs
