@@ -126,7 +126,7 @@ namespace CodeFirstNewDatabaseSample
                     var XclassAverage = getAverage(classList);
                     foreach (var classPhoto in classList)
                     {
-                        classPhoto
+                        // classPhoto;
                     }
                 }
                 // var Xaverage = getAverage(trainPhotoList);
