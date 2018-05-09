@@ -81,12 +81,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Controllers\net-core\alglibnet2.dll" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\net-core\src\alglibinternal.cs" />
+    <Compile Include="Controllers\net-core\src\alglibmisc.cs" />
+    <Compile Include="Controllers\net-core\src\alglib_info.cs" />
+    <Compile Include="Controllers\net-core\src\ap.cs" />
+    <Compile Include="Controllers\net-core\src\dataanalysis.cs" />
+    <Compile Include="Controllers\net-core\src\diffequations.cs" />
+    <Compile Include="Controllers\net-core\src\fasttransforms.cs" />
+    <Compile Include="Controllers\net-core\src\integration.cs" />
+    <Compile Include="Controllers\net-core\src\interpolation.cs" />
+    <Compile Include="Controllers\net-core\src\linalg.cs" />
+    <Compile Include="Controllers\net-core\src\optimization.cs" />
+    <Compile Include="Controllers\net-core\src\solvers.cs" />
+    <Compile Include="Controllers\net-core\src\specialfunctions.cs" />
+    <Compile Include="Controllers\net-core\src\statistics.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -104,6 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeFirstNewDatabaseSample\CodeFirstNewDatabaseSample.csproj">
+      <Project>{b2bc57a0-ac6f-4d1c-9261-380796d05e02}</Project>
+      <Name>CodeFirstNewDatabaseSample</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
