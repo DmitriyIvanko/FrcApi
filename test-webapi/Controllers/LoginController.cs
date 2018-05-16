@@ -14,8 +14,8 @@ namespace test_webapi.Controllers
         [ActionName("sign-in")]
         public int GetPing()
         {
-            var unitWork = new WorkWithImageDatabase();
-            unitWork.start();
+            // var unitWork = new WorkWithImageDatabase();
+            // unitWork.start();
 
             var a = 5;
             return a;

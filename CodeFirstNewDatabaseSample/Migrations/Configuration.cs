@@ -5,15 +5,14 @@ namespace CodeFirstNewDatabaseSample.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CodeFirstNewDatabaseSample.BloggingContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CodeFirstNewDatabaseSample.FrcContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "CodeFirstNewDatabaseSample.BloggingContext";
         }
 
-        protected override void Seed(CodeFirstNewDatabaseSample.BloggingContext context)
+        protected override void Seed(CodeFirstNewDatabaseSample.FrcContext context)
         {
             //  This method will be called after migrating to the latest version.
 

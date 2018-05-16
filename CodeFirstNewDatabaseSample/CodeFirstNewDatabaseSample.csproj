@@ -38,10 +38,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.4.1\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,25 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201805081844247_InitialCreate.cs" />
-    <Compile Include="Migrations\201805081844247_InitialCreate.Designer.cs">
-      <DependentUpon>201805081844247_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805081901014_AddUrl.cs" />
-    <Compile Include="Migrations\201805081901014_AddUrl.Designer.cs">
-      <DependentUpon>201805081901014_AddUrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805081926166_AddUser.cs" />
-    <Compile Include="Migrations\201805081926166_AddUser.Designer.cs">
-      <DependentUpon>201805081926166_AddUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805081942399_AddPhoto.cs" />
-    <Compile Include="Migrations\201805081942399_AddPhoto.Designer.cs">
-      <DependentUpon>201805081942399_AddPhoto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805091340355_ImageDatabase.cs" />
-    <Compile Include="Migrations\201805091340355_ImageDatabase.Designer.cs">
-      <DependentUpon>201805091340355_ImageDatabase.cs</DependentUpon>
+    <Compile Include="Entities\ImageDatabase.cs" />
+    <Compile Include="Entities\Image.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="FrcContext.cs" />
+    <Compile Include="Migrations\201805161457242_Add_ImageDatabase_User_Image.cs" />
+    <Compile Include="Migrations\201805161457242_Add_ImageDatabase_User_Image.Designer.cs">
+      <DependentUpon>201805161457242_Add_ImageDatabase_User_Image.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -79,20 +72,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805081844247_InitialCreate.resx">
-      <DependentUpon>201805081844247_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805081901014_AddUrl.resx">
-      <DependentUpon>201805081901014_AddUrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805081926166_AddUser.resx">
-      <DependentUpon>201805081926166_AddUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805081942399_AddPhoto.resx">
-      <DependentUpon>201805081942399_AddPhoto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805091340355_ImageDatabase.resx">
-      <DependentUpon>201805091340355_ImageDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805161457242_Add_ImageDatabase_User_Image.resx">
+      <DependentUpon>201805161457242_Add_ImageDatabase_User_Image.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
