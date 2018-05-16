@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using CodeFirstNewDatabaseSample.Entities;
+using Data.Entities;
 
-namespace CodeFirstNewDatabaseSample
+namespace Data
 {
     class FrcContext : DbContext
     {

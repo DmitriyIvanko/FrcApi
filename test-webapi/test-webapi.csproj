@@ -106,9 +106,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeFirstNewDatabaseSample\CodeFirstNewDatabaseSample.csproj">
+    <ProjectReference Include="..\CodeFirstNewDatabaseSample\Data.csproj">
       <Project>{b2bc57a0-ac6f-4d1c-9261-380796d05e02}</Project>
-      <Name>CodeFirstNewDatabaseSample</Name>
+      <Name>Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

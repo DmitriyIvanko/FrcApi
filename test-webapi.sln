@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-webapi", "test-webapi\test-webapi.csproj", "{DC1C9629-76C5-48B1-B97F-0C7A56305C22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstNewDatabaseSample", "CodeFirstNewDatabaseSample\CodeFirstNewDatabaseSample.csproj", "{B2BC57A0-AC6F-4D1C-9261-380796D05E02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "CodeFirstNewDatabaseSample\Data.csproj", "{B2BC57A0-AC6F-4D1C-9261-380796D05E02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -7,13 +7,13 @@ namespace CodeFirstNewDatabaseSample.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Add_ImageDatabase_User_Image : IMigrationMetadata
+    public sealed partial class Add_ImageDatabase_User_Image_tables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_ImageDatabase_User_Image));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_ImageDatabase_User_Image_tables));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805161457242_Add_ImageDatabase_User_Image"; }
+            get { return "201805161527583_Add_ImageDatabase_User_Image_tables"; }
         }
         
         string IMigrationMetadata.Source

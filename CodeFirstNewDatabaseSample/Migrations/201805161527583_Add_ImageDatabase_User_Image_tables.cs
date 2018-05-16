@@ -3,7 +3,7 @@ namespace CodeFirstNewDatabaseSample.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Add_ImageDatabase_User_Image : DbMigration
+    public partial class Add_ImageDatabase_User_Image_tables : DbMigration
     {
         public override void Up()
         {

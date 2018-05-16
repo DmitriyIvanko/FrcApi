@@ -59,9 +59,10 @@
     <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="FrcContext.cs" />
-    <Compile Include="Migrations\201805161457242_Add_ImageDatabase_User_Image.cs" />
-    <Compile Include="Migrations\201805161457242_Add_ImageDatabase_User_Image.Designer.cs">
-      <DependentUpon>201805161457242_Add_ImageDatabase_User_Image.cs</DependentUpon>
+    <Compile Include="Logic\AddImageDatabase\AddImageDatabase.cs" />
+    <Compile Include="Migrations\201805161527583_Add_ImageDatabase_User_Image_tables.cs" />
+    <Compile Include="Migrations\201805161527583_Add_ImageDatabase_User_Image_tables.Designer.cs">
+      <DependentUpon>201805161527583_Add_ImageDatabase_User_Image_tables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -72,8 +73,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805161457242_Add_ImageDatabase_User_Image.resx">
-      <DependentUpon>201805161457242_Add_ImageDatabase_User_Image.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805161527583_Add_ImageDatabase_User_Image_tables.resx">
+      <DependentUpon>201805161527583_Add_ImageDatabase_User_Image_tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
