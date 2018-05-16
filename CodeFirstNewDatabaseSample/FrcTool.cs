@@ -12,21 +12,23 @@ using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using Data.Entities;
 using Data.Logic.AddImageDatabase;
+using Data.Logic.FaceRecognitionSystem;
 
 namespace Data
 {
-    class ImageDatabaseTool
+    class FrcTool
     {
         static void Main(string[] args)
         {
-            string imageDatabaseName = "ORL";
-            string inputDatabaseDir = @"C:\Projects\frc\AT&T_ORL_database_JPEG\";
+            // string imageDatabaseName = "ORL";
+            // string inputDatabaseDir = @"C:\Projects\frc\AT&T_ORL_database_JPEG\";
+            // 
+            // var dbWriter = new AddImageDatabase(imageDatabaseName, inputDatabaseDir);
+            // dbWriter.startAddingDatabase();
 
-            var dbWriter = new AddImageDatabase(imageDatabaseName, inputDatabaseDir);
-            dbWriter.startAddingDatabase();
+            string description = @"(ORL:30/25/50){S}[Brightness](LDA:11/11){S}[IDTrue:plot(E)]";
+            var md = new MnemonicDescriptionModel(description);
         }
-
-
 
         // public class WorkWithImageDatabase
         // {
