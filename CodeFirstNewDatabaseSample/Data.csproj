@@ -60,6 +60,8 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="FrcContext.cs" />
     <Compile Include="Logic\AddImageDatabase\AddImageDatabase.cs" />
+    <Compile Include="Logic\constants.cs" />
+    <Compile Include="Logic\FaceRecognitionSystem\FaceRecognitionSystem.cs" />
     <Compile Include="Logic\FaceRecognitionSystem\MnemonicDescriptionModel.cs" />
     <Compile Include="Migrations\201805161527583_Add_ImageDatabase_User_Image_tables.cs" />
     <Compile Include="Migrations\201805161527583_Add_ImageDatabase_User_Image_tables.Designer.cs">

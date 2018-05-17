@@ -10,8 +10,7 @@ namespace Data.Logic.FaceRecognitionSystem
         public int databaseTrainUsersForThresholdPercent;
         public string preprocessingName;
         public string featureName;
-        // to do: создать специальный класс для отображения мнемонического описания относящегося к обучению.
-        public string trainName;
+        public string trainName; // to do: создать специальный класс для отображения мнемонического описания относящегося к обучению.
         public int trainMartixLeftDimension;
         public int trainMartixRightDimension;
         public string keepInDatabaseName;
