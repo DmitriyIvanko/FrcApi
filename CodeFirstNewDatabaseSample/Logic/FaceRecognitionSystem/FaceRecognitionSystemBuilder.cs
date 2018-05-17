@@ -14,14 +14,14 @@ using Data.Entities;
 
 namespace Data.Logic.FaceRecognitionSystem
 {
-    public class FaceRecognitionSystem
+    public class FaceRecognitionSystemBuilder
     {
         private int totalTrainImageForUser;
         private int totalUserForTrain;
         private MnemonicDescriptionModel md;
         private List<List<Matrix<double>>> trainImageLists = new List<List<Matrix<double>>>();
 
-        public FaceRecognitionSystem(MnemonicDescriptionModel _md)
+        public FaceRecognitionSystemBuilder(MnemonicDescriptionModel _md)
         {
             md = _md;
             Create();
@@ -65,7 +65,7 @@ namespace Data.Logic.FaceRecognitionSystem
             switch (md.trainName)
             {
                 case "LDA":
-                    trainLDA(imdb);
+                    trainLDA(imdb, db);
                     break;
                 default:
                     throw new NotImplementedException();
@@ -74,7 +74,7 @@ namespace Data.Logic.FaceRecognitionSystem
             db.Dispose();
         }
 
-        private void trainLDA(ImageDatabase imdb)
+        private void trainLDA(ImageDatabase imdb, FrcContext db)
         {
             if (!imdb.isSameImageSize || !imdb.isSameTotalImageForUser)
             {
@@ -171,6 +171,26 @@ namespace Data.Logic.FaceRecognitionSystem
                 cVectorList.Add(CeigResult.EigenVectors.Column(i));
             }
             var eigMatrixRight = Matrix<double>.Build.DenseOfColumnVectors(cVectorList.ToArray());
+
+            var averageImageMatrixString = convertToMatrixString(Xaverage);
+            var leftMatrixString = convertToMatrixString(eigMatrixLeft);
+            var rightMatrixString = convertToMatrixString(eigMatrixRight);
+
+            db.MatrixStrings.Add(averageImageMatrixString);
+            db.MatrixStrings.Add(leftMatrixString);
+            db.MatrixStrings.Add(rightMatrixString);
+            db.SaveChanges();
+
+            var ldaEntity = new LDA
+            {
+                AverageImageMatrixId = averageImageMatrixString.MatrixStringId,
+                LDAId = Guid.NewGuid(),
+                LeftMatrixId = leftMatrixString.MatrixStringId,
+                RightMatrixId = rightMatrixString.MatrixStringId,
+            };
+
+            db.LDAs.Add(ldaEntity);
+            db.SaveChanges();
         }
 
         private double[,] readImage(byte[] imageByteArray)
@@ -194,5 +214,15 @@ namespace Data.Logic.FaceRecognitionSystem
             return result;
         }
 
+        private MatrixString convertToMatrixString(Matrix<double> matrix)
+        {
+            return new MatrixString
+            {
+                MatrixStringId = Guid.NewGuid(),
+                DimentionOne = matrix.ColumnCount,
+                DimentionTwo = matrix.RowCount,
+                Value = string.Join(Constants.MATRIX_SEPARATOR, matrix.ToColumnMajorArray().Select(x => x.ToString())),
+            };
+        }
     }
 }

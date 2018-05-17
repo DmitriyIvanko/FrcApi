@@ -55,17 +55,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\FaceRecognitionSystem.cs" />
     <Compile Include="Entities\ImageDatabase.cs" />
     <Compile Include="Entities\Image.cs" />
+    <Compile Include="Entities\LDA.cs" />
+    <Compile Include="Entities\MatrixString.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="FrcContext.cs" />
     <Compile Include="Logic\AddImageDatabase\AddImageDatabase.cs" />
     <Compile Include="Logic\constants.cs" />
-    <Compile Include="Logic\FaceRecognitionSystem\FaceRecognitionSystem.cs" />
+    <Compile Include="Logic\FaceRecognitionSystem\FaceRecognitionSystemBuilder.cs" />
     <Compile Include="Logic\FaceRecognitionSystem\MnemonicDescriptionModel.cs" />
-    <Compile Include="Migrations\201805161527583_Add_ImageDatabase_User_Image_tables.cs" />
-    <Compile Include="Migrations\201805161527583_Add_ImageDatabase_User_Image_tables.Designer.cs">
-      <DependentUpon>201805161527583_Add_ImageDatabase_User_Image_tables.cs</DependentUpon>
+    <Compile Include="Migrations\201805171423397_Create_FaceRecognitionSystem_ImageDatabase_tables.cs" />
+    <Compile Include="Migrations\201805171423397_Create_FaceRecognitionSystem_ImageDatabase_tables.Designer.cs">
+      <DependentUpon>201805171423397_Create_FaceRecognitionSystem_ImageDatabase_tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805171456174_Create_LDA_Matrix_tables.cs" />
+    <Compile Include="Migrations\201805171456174_Create_LDA_Matrix_tables.Designer.cs">
+      <DependentUpon>201805171456174_Create_LDA_Matrix_tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805171504217_Create_Matrix_string.cs" />
+    <Compile Include="Migrations\201805171504217_Create_Matrix_string.Designer.cs">
+      <DependentUpon>201805171504217_Create_Matrix_string.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="FrcTool.cs" />
@@ -76,10 +87,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805161527583_Add_ImageDatabase_User_Image_tables.resx">
-      <DependentUpon>201805161527583_Add_ImageDatabase_User_Image_tables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805171423397_Create_FaceRecognitionSystem_ImageDatabase_tables.resx">
+      <DependentUpon>201805171423397_Create_FaceRecognitionSystem_ImageDatabase_tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805171456174_Create_LDA_Matrix_tables.resx">
+      <DependentUpon>201805171456174_Create_LDA_Matrix_tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805171504217_Create_Matrix_string.resx">
+      <DependentUpon>201805171504217_Create_Matrix_string.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

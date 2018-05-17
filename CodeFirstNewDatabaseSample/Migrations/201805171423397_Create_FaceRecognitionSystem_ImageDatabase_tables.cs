@@ -3,10 +3,21 @@ namespace CodeFirstNewDatabaseSample.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Add_ImageDatabase_User_Image_tables : DbMigration
+    public partial class Create_FaceRecognitionSystem_ImageDatabase_tables : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.FaceRecognitionSystems",
+                c => new
+                    {
+                        FaceRecognitionSystemId = c.Guid(nullable: false, identity: true),
+                        MnemonicDescription = c.String(),
+                        Type = c.String(),
+                        TypeSystemId = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.FaceRecognitionSystemId);
+            
             CreateTable(
                 "dbo.ImageDatabases",
                 c => new
@@ -59,6 +70,7 @@ namespace CodeFirstNewDatabaseSample.Migrations
             DropTable("dbo.Images");
             DropTable("dbo.Users");
             DropTable("dbo.ImageDatabases");
+            DropTable("dbo.FaceRecognitionSystems");
         }
     }
 }
