@@ -7,13 +7,13 @@ namespace CodeFirstNewDatabaseSample.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Create_FaceRecognitionSystem_ImageDatabase_tables : IMigrationMetadata
+    public sealed partial class Add_DatabaseTestUser_table : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Create_FaceRecognitionSystem_ImageDatabase_tables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_DatabaseTestUser_table));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805171423397_Create_FaceRecognitionSystem_ImageDatabase_tables"; }
+            get { return "201805180743494_Add_DatabaseTestUser_table"; }
         }
         
         string IMigrationMetadata.Source

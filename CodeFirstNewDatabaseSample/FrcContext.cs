@@ -11,6 +11,8 @@ namespace Data
         public DbSet<User> Users { get; set; }
         public DbSet<LDA> LDAs { get; set; }
         public DbSet<MatrixString> MatrixStrings { get; set; }
+        public DbSet<Etalon> Etalons { get; set; }
+        public DbSet<DatabaseTestUser> DatabaseTestUsers { get; set; }
 
         public FrcContext()
             : base("name=FrcContextDatabase")

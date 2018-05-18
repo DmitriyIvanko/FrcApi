@@ -12,5 +12,8 @@ namespace Data.Entities
         public string MnemonicDescription { get; set; }
         public string Type { get; set; }
         public Guid TypeSystemId { get; set; }
+        public int InputImageHeight { get; set; }
+        public int InputImageWidth { get; set; }
+        public DateTime CreatedDT { get; set; }
     }
 }

@@ -4,6 +4,7 @@ namespace Data.Logic.FaceRecognitionSystem
 {
     public class MnemonicDescriptionModel
     {
+        public string originalDescription;
         public string databaseName;
         public int databaseTestImagesPercent;
         public int databaseTestUsersForOpenTaskPercent;
@@ -16,7 +17,6 @@ namespace Data.Logic.FaceRecognitionSystem
         public string keepInDatabaseName;
         public string testName;
 
-        private string originalDescription;
         private string databaseDescriptionBlock;
         private string preprocessingDescriptionBlock;
         private string featureDescriptionBlock;

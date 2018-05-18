@@ -24,10 +24,9 @@ namespace Data.Logic.FaceRecognitionSystem
         public FaceRecognitionSystemBuilder(MnemonicDescriptionModel _md)
         {
             md = _md;
-            Create();
         }
 
-        private void Create()
+        public Guid Create()
         {
             var db = new FrcContext();
             var imdb = db.ImageDatabases.Where(x => x.DatabaseName == md.databaseName).FirstOrDefault();
@@ -56,25 +55,47 @@ namespace Data.Logic.FaceRecognitionSystem
                 List<Matrix<double>> userMatrixList = new List<Matrix<double>>();
                 foreach (var userImage in userImageList)
                 {
-                    var imageMatrix = readImage(userImage.ImageByteArray);
+                    var imageMatrix = ImageHelper.ImageByteArray2pixelArray(userImage.ImageByteArray);
                     userMatrixList.Add(DenseMatrix.OfArray(imageMatrix));
                 }
                 trainImageLists.Add(userMatrixList);
             }
 
+            Guid frsId;
             switch (md.trainName)
             {
                 case "LDA":
-                    trainLDA(imdb, db);
+                    frsId = trainLDA(imdb, db);
                     break;
                 default:
                     throw new NotImplementedException();
             }
 
+            // Записать все изображения пользователей, которые предназначены для тестирования БД на закрытом множестве.
+            var userListOfListsForTest = db.Users.OrderBy(x => x.Username).Take(totalUserForTrain)
+                .Select(x => x.Images.OrderBy(y => y.ImageName).Skip(totalTrainImageForUser)).ToList();
+
+            var testList = userListOfListsForTest.SelectMany(x => x.Select(i => new DatabaseTestUser
+            {
+                DatabaseTestUserId = Guid.NewGuid(),
+                FaceRecognitionSystemId = frsId,
+                ImageId = i.ImageId,
+            })).ToList();
+
+            db.DatabaseTestUsers.AddRange(testList);
+            db.SaveChanges();
+
             db.Dispose();
+
+            // Зарегестрировать все изображения пользователей, которые учавствовали в обучении.
+            var registrator = new FaceRecognitionRegistrator();
+            var imageIdList = userListOfListsForTrain.SelectMany(x => x.Select(y => y.ImageId)).ToList();
+            registrator.RegisterUserList(imageIdList, frsId);
+
+            return frsId;
         }
 
-        private void trainLDA(ImageDatabase imdb, FrcContext db)
+        private Guid trainLDA(ImageDatabase imdb, FrcContext db)
         {
             if (!imdb.isSameImageSize || !imdb.isSameTotalImageForUser)
             {
@@ -172,9 +193,9 @@ namespace Data.Logic.FaceRecognitionSystem
             }
             var eigMatrixRight = Matrix<double>.Build.DenseOfColumnVectors(cVectorList.ToArray());
 
-            var averageImageMatrixString = convertToMatrixString(Xaverage);
-            var leftMatrixString = convertToMatrixString(eigMatrixLeft);
-            var rightMatrixString = convertToMatrixString(eigMatrixRight);
+            var averageImageMatrixString = MatrixHelper.convertToMatrixString(Xaverage);
+            var leftMatrixString = MatrixHelper.convertToMatrixString(eigMatrixLeft);
+            var rightMatrixString = MatrixHelper.convertToMatrixString(eigMatrixRight);
 
             db.MatrixStrings.Add(averageImageMatrixString);
             db.MatrixStrings.Add(leftMatrixString);
@@ -191,38 +212,22 @@ namespace Data.Logic.FaceRecognitionSystem
 
             db.LDAs.Add(ldaEntity);
             db.SaveChanges();
-        }
 
-        private double[,] readImage(byte[] imageByteArray)
-        {
-            double[,] result;
-
-            using (var ms = new MemoryStream(imageByteArray))
+            var frs = new Entities.FaceRecognitionSystem
             {
-                Bitmap trainPhotoImage = new Bitmap(System.Drawing.Image.FromStream(ms));
-                result = new double[trainPhotoImage.Height, trainPhotoImage.Width];
-                for (int x = 0; x < trainPhotoImage.Width; x++)
-                {
-                    for (int y = 0; y < trainPhotoImage.Height; y++)
-                    {
-                        Color pixelColor = trainPhotoImage.GetPixel(x, y);
-                        result[y, x] = pixelColor.R;
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        private MatrixString convertToMatrixString(Matrix<double> matrix)
-        {
-            return new MatrixString
-            {
-                MatrixStringId = Guid.NewGuid(),
-                DimentionOne = matrix.ColumnCount,
-                DimentionTwo = matrix.RowCount,
-                Value = string.Join(Constants.MATRIX_SEPARATOR, matrix.ToColumnMajorArray().Select(x => x.ToString())),
+                FaceRecognitionSystemId = Guid.NewGuid(),
+                MnemonicDescription = md.originalDescription,
+                Type = "LDA",
+                TypeSystemId = ldaEntity.LDAId,
+                InputImageHeight = imdb.ImageHeight,
+                InputImageWidth = imdb.ImageWidth,
+                CreatedDT = DateTime.UtcNow,
             };
+
+            db.FaceRecognitionSystems.Add(frs);
+            db.SaveChanges();
+
+            return frs.FaceRecognitionSystemId;
         }
     }
 }

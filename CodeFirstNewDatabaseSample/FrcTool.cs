@@ -28,7 +28,8 @@ namespace Data
 
             string description = @"(ORL:30/25/50){S}[Brightness](LDA:11/11){S}[IDTrue:plot(E)]";
             var md = new MnemonicDescriptionModel(description);
-            var fr = new FaceRecognitionSystemBuilder(md);
+            var frBuilder = new FaceRecognitionSystemBuilder(md);
+            var frsId = frBuilder.Create();
         }
     }
 }

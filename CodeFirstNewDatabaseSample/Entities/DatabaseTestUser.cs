@@ -4,13 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Entities
 {
-    public class MatrixString
+    public class DatabaseTestUser
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid MatrixStringId { get; set; }
-        public int DimentionOne { get; set; }
-        public int DimentionTwo { get; set; }
-        public string Value { get; set; }
+        public Guid DatabaseTestUserId { get; set; }
+        public Guid FaceRecognitionSystemId { get; set; }
+        public Guid ImageId { get; set; }
     }
 }
