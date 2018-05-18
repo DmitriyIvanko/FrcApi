@@ -65,7 +65,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="FrcContext.cs" />
     <Compile Include="Logic\AddImageDatabase\AddImageDatabase.cs" />
-    <Compile Include="Logic\constants.cs" />
+    <Compile Include="Logic\Constants.cs" />
     <Compile Include="Logic\FaceRecognitionSystem\FaceRecognitionRegistrator.cs" />
     <Compile Include="Logic\FaceRecognitionSystem\FaceRecognitionSystemBuilder.cs" />
     <Compile Include="Logic\FaceRecognitionSystem\FaceRecognitionTester.cs" />

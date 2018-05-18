@@ -31,9 +31,9 @@ namespace Data
             // var frBuilder = new FaceRecognitionSystemBuilder(md);
             // var frsId = frBuilder.Create();
 
-            var frsId = Guid.Parse("564F7374-8F5A-E811-9CA1-4CCC6A0F6DCB");
-            var tester = new FaceRecognitionTester();
-            tester.TestFromDatabase(frsId);
+            // var frsId = Guid.Parse("564F7374-8F5A-E811-9CA1-4CCC6A0F6DCB");
+            // var tester = new FaceRecognitionTester();
+            // tester.TestFromDatabase(frsId);
 
         }
     }
