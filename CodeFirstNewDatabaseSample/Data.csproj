@@ -68,16 +68,13 @@
     <Compile Include="Logic\constants.cs" />
     <Compile Include="Logic\FaceRecognitionSystem\FaceRecognitionRegistrator.cs" />
     <Compile Include="Logic\FaceRecognitionSystem\FaceRecognitionSystemBuilder.cs" />
+    <Compile Include="Logic\FaceRecognitionSystem\FaceRecognitionTester.cs" />
     <Compile Include="Logic\FaceRecognitionSystem\MnemonicDescriptionModel.cs" />
     <Compile Include="Logic\MatrixHelper.cs" />
     <Compile Include="Logic\ImageHelper.cs" />
-    <Compile Include="Migrations\201805180726202_InitDatabase.cs" />
-    <Compile Include="Migrations\201805180726202_InitDatabase.Designer.cs">
-      <DependentUpon>201805180726202_InitDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805180743494_Add_DatabaseTestUser_table.cs" />
-    <Compile Include="Migrations\201805180743494_Add_DatabaseTestUser_table.Designer.cs">
-      <DependentUpon>201805180743494_Add_DatabaseTestUser_table.cs</DependentUpon>
+    <Compile Include="Migrations\201805181133122_InitDatabase.cs" />
+    <Compile Include="Migrations\201805181133122_InitDatabase.Designer.cs">
+      <DependentUpon>201805181133122_InitDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="FrcTool.cs" />
@@ -88,11 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805180726202_InitDatabase.resx">
-      <DependentUpon>201805180726202_InitDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805180743494_Add_DatabaseTestUser_table.resx">
-      <DependentUpon>201805180743494_Add_DatabaseTestUser_table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805181133122_InitDatabase.resx">
+      <DependentUpon>201805181133122_InitDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

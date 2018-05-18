@@ -26,10 +26,15 @@ namespace Data
             // var dbWriter = new AddImageDatabase(imageDatabaseName, inputDatabaseDir);
             // dbWriter.startAddingDatabase();
 
-            string description = @"(ORL:30/25/50){S}[Brightness](LDA:11/11){S}[IDTrue:plot(E)]";
-            var md = new MnemonicDescriptionModel(description);
-            var frBuilder = new FaceRecognitionSystemBuilder(md);
-            var frsId = frBuilder.Create();
+            // string description = @"(ORL:30/25/50){S}[Brightness](LDA:11/11){S}[IDTrue:plot(E)]";
+            // var md = new MnemonicDescriptionModel(description);
+            // var frBuilder = new FaceRecognitionSystemBuilder(md);
+            // var frsId = frBuilder.Create();
+
+            var frsId = Guid.Parse("564F7374-8F5A-E811-9CA1-4CCC6A0F6DCB");
+            var tester = new FaceRecognitionTester();
+            tester.TestFromDatabase(frsId);
+
         }
     }
 }

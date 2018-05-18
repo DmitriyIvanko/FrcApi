@@ -8,6 +8,16 @@ namespace CodeFirstNewDatabaseSample.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.DatabaseTestUsers",
+                c => new
+                    {
+                        DatabaseTestUserId = c.Guid(nullable: false, identity: true),
+                        FaceRecognitionSystemId = c.Guid(nullable: false),
+                        ImageId = c.Guid(nullable: false),
+                    })
+                .PrimaryKey(t => t.DatabaseTestUserId);
+            
+            CreateTable(
                 "dbo.Etalons",
                 c => new
                     {
@@ -112,6 +122,7 @@ namespace CodeFirstNewDatabaseSample.Migrations
             DropTable("dbo.ImageDatabases");
             DropTable("dbo.FaceRecognitionSystems");
             DropTable("dbo.Etalons");
+            DropTable("dbo.DatabaseTestUsers");
         }
     }
 }

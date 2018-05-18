@@ -7,13 +7,13 @@ namespace CodeFirstNewDatabaseSample.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Add_DatabaseTestUser_table : IMigrationMetadata
+    public sealed partial class InitDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_DatabaseTestUser_table));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805180743494_Add_DatabaseTestUser_table"; }
+            get { return "201805181133122_InitDatabase"; }
         }
         
         string IMigrationMetadata.Source
