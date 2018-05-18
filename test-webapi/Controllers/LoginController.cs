@@ -9,7 +9,7 @@ namespace test_webapi.Controllers
 {
     public class LoginController : ApiController
     {
-        [HttpPost]
+        [HttpGet]
         [ActionName("sign-in")]
         public int GetPing()
         {

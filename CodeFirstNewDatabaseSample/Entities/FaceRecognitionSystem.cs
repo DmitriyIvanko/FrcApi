@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Entities
 {
-    class FaceRecognitionSystem
+    public class FaceRecognitionSystem
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
