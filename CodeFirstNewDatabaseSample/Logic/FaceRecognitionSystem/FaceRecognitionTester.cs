@@ -34,6 +34,58 @@ namespace Data.Logic.FaceRecognitionSystem
             db.Dispose();
         }
 
+        public User TestFromImage(Guid frsId, string imageByteArray)
+        {
+            var db = new FrcContext();
+            var frs = db.FaceRecognitionSystems.Where(x => x.FaceRecognitionSystemId == frsId).FirstOrDefault();
+
+            if (frs == null)
+            {
+                throw new Exception("Face recognition system is not exist");
+            }
+
+            User result;
+            switch (frs.Type)
+            {
+                case "LDA":
+                    result = recognizeLDA(frs.TypeSystemId, db, frsId, imageByteArray);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            db.Dispose();
+            return result;
+        }
+
+        private User recognizeLDA(Guid ldaId, FrcContext db, Guid frsId, string imageByteArray)
+        {
+            var systemEtalonCount = 1;
+            // Копируется в testLDA нужно отрефакторить в более лучшем стиле.
+            var ldaEntity = db.LDAs.Where(x => x.LDAId == ldaId).FirstOrDefault();
+
+            if (ldaEntity == null)
+            {
+                throw new Exception("LDA entity is not exist");
+            }
+
+            var averageMatrixString = db.MatrixStrings.Where(x => x.MatrixStringId == ldaEntity.AverageImageMatrixId).FirstOrDefault();
+            var leftMatrixString = db.MatrixStrings.Where(x => x.MatrixStringId == ldaEntity.LeftMatrixId).FirstOrDefault();
+            var rightMatrixString = db.MatrixStrings.Where(x => x.MatrixStringId == ldaEntity.RightMatrixId).FirstOrDefault();
+
+            var averageMatrix = MatrixHelper.MatrixString2Matrix(averageMatrixString);
+            var leftMatrix = MatrixHelper.MatrixString2Matrix(leftMatrixString);
+            var rightMatrix = MatrixHelper.MatrixString2Matrix(rightMatrixString);
+
+            var ba = Convert.FromBase64String(imageByteArray);
+            var imageMatrix = DenseMatrix.OfArray(ImageHelper.ImageByteArray2pixelArray(ba));
+            var featureMatrix = leftMatrix * (imageMatrix - averageMatrix) * rightMatrix;
+            var etalonList = db.Etalons.Where(e => e.FaceRecognitionSystemId == frsId).ToList();
+            var etalonForUserTempList = etalonList.GroupBy(x => x.UserId).SelectMany(x => x.Take(systemEtalonCount)).ToList();
+            var userId = CompareToEtalonList(featureMatrix, etalonForUserTempList, db);
+            return db.Users.Where(x => x.UserId == userId).FirstOrDefault();
+        }
+
         private void testLDA(Guid ldaId, FrcContext db, Guid frsId)
         {
             // копируется в FacerecognitionRegistrator нужно вынести в отдельный файл.
@@ -89,12 +141,6 @@ namespace Data.Logic.FaceRecognitionSystem
 
         private Guid CompareToEtalonList(DenseMatrix featureMatrix,  List<Etalon> etalonForUserTempList, FrcContext db)
         {
-            // var etalonWithMatrixList =  etalonForUserTempList.Select(x => new
-            // {
-            //     etalon = x,
-            //     matrixString = db.MatrixStrings.Where(y => y.MatrixStringId == x.FeatureMatrixId).FirstOrDefault(),
-            // }).ToList();
-
             var test = etalonForUserTempList.Select(x => x.FeatureMatrixId).ToList();
             var matrixStringList = db.MatrixStrings.Where(x => test.Any(y => y == x.MatrixStringId)).ToList();
 
