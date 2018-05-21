@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Http;
 
 using Data.Entities;
@@ -17,6 +18,39 @@ namespace test_webapi.Controllers
             var repository = new FrsRepository();
             var frsList =  repository.GetFrsList();
             return frsList;
+        }
+
+        [HttpGet]
+        [ActionName("get-frs-parameters")]
+        public FrsParameterDto GetFrsParameter([FromUri] Guid frsId)
+        {
+            var repository = new FrsRepository();
+            var frsList = repository.GetFrsParemeter(frsId);
+            return new FrsParameterDto
+            {
+                AverageImageMatrix = new MatrixStringDto
+                {
+                    DimentionOne = frsList[0].DimentionOne,
+                    DimentionTwo = frsList[0].DimentionTwo,
+                    MatrixStringId = frsList[0].MatrixStringId,
+                    Value = frsList[0].Value,
+                },
+                FrsId = frsId,
+                LeftMatrix = new MatrixStringDto
+                {
+                    DimentionOne = frsList[1].DimentionOne,
+                    DimentionTwo = frsList[1].DimentionTwo,
+                    MatrixStringId = frsList[1].MatrixStringId,
+                    Value = frsList[1].Value,
+                },
+                RightMatrix = new MatrixStringDto
+                {
+                    DimentionOne = frsList[2].DimentionOne,
+                    DimentionTwo = frsList[2].DimentionTwo,
+                    MatrixStringId = frsList[2].MatrixStringId,
+                    Value = frsList[2].Value,
+                }
+            };
         }
 
         [HttpPost]

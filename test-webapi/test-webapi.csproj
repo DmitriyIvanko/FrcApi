@@ -99,7 +99,9 @@
     <Compile Include="Controllers\FrsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Dto\FrsParameterDto.cs" />
     <Compile Include="Dto\ImageDto.cs" />
+    <Compile Include="Dto\MatrixStringDto.cs" />
     <Compile Include="Dto\RecognizeItemDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Global.asax.cs">
