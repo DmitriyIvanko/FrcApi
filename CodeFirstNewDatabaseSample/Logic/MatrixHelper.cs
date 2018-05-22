@@ -20,6 +20,7 @@ namespace Data.Logic
             };
         }
 
+        // to do: автоматически происходит транспонирование при восстановлении матрицы.
         public static DenseMatrix MatrixString2Matrix(Entities.MatrixString matrixString)
         {
             var valStrArray = matrixString.Value.Split(Constants.MATRIX_SEPARATOR);

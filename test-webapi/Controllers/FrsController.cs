@@ -21,7 +21,7 @@ namespace test_webapi.Controllers
         }
 
         [HttpGet]
-        [ActionName("get-frs-parameters")]
+        [ActionName("get-frs-parameter")]
         public FrsParameterDto GetFrsParameter([FromUri] Guid frsId)
         {
             var repository = new FrsRepository();
@@ -59,6 +59,25 @@ namespace test_webapi.Controllers
         {
             var frs = new FaceRecognitionTester();
             var user = frs.TestFromImage(item.FrsId, item.ImageByteArray);
+            return new UserDto
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+            };
+        }
+
+        [HttpPost]
+        [ActionName("by-feature")]
+        public UserDto ByFeature([FromBody] RecognizeFeatureDto item)
+        {
+            var frs = new FaceRecognitionTester();
+            var matrixString = new MatrixString
+            {
+                DimentionOne = item.DimentionOne,
+                DimentionTwo = item.DimentionTwo,
+                Value = item.FeatureMatrixString,
+            };
+            var user = frs.TestFromFeature(item.FrsId, matrixString);
             return new UserDto
             {
                 UserId = user.UserId,
