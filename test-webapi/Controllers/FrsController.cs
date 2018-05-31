@@ -58,7 +58,7 @@ namespace test_webapi.Controllers
         public UserDto Recognize([FromBody] RecognizeItemDto item)
         {
             var frs = new FaceRecognitionTester();
-            var user = frs.TestFromImage(item.FrsId, item.ImageByteArray);
+            var user = frs.TestFromImage(item.FrsId, item.ImageByteArray, item.SystemEtalonCount);
             return new UserDto
             {
                 UserId = user.UserId,

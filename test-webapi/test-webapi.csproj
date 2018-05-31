@@ -98,10 +98,12 @@
     <Compile Include="Controllers\ImageController .cs" />
     <Compile Include="Controllers\FrsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PingController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Dto\FrsParameterDto.cs" />
     <Compile Include="Dto\ImageDto.cs" />
     <Compile Include="Dto\MatrixStringDto.cs" />
+    <Compile Include="Dto\PingDto.cs" />
     <Compile Include="Dto\RecognizeFeatureDto.cs" />
     <Compile Include="Dto\RecognizeItemDto.cs" />
     <Compile Include="Dto\UserDto.cs" />

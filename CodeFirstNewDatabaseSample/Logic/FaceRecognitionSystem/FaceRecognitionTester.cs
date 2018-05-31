@@ -87,7 +87,7 @@ namespace Data.Logic.FaceRecognitionSystem
             return db.Users.Where(x => x.UserId == userId).FirstOrDefault();
         }
 
-        public User TestFromImage(Guid frsId, string imageByteArray)
+        public User TestFromImage(Guid frsId, string imageByteArray, int systemEtalonCount)
         {
             var db = new FrcContext();
             var frs = db.FaceRecognitionSystems.Where(x => x.FaceRecognitionSystemId == frsId).FirstOrDefault();
@@ -101,7 +101,7 @@ namespace Data.Logic.FaceRecognitionSystem
             switch (frs.Type)
             {
                 case "LDA":
-                    result = recognizeLDA(frs.TypeSystemId, db, frsId, imageByteArray);
+                    result = recognizeLDA(frs.TypeSystemId, db, frsId, imageByteArray, systemEtalonCount);
                     break;
                 default:
                     throw new NotImplementedException();
@@ -111,9 +111,9 @@ namespace Data.Logic.FaceRecognitionSystem
             return result;
         }
 
-        private User recognizeLDA(Guid ldaId, FrcContext db, Guid frsId, string imageByteArray)
+        private User recognizeLDA(Guid ldaId, FrcContext db, Guid frsId, string imageByteArray, int systemEtalonCount)
         {
-            var systemEtalonCount = 1;
+            // var systemEtalonCount = 1;
             // Копируется в testLDA нужно отрефакторить в более лучшем стиле.
             var ldaEntity = db.LDAs.Where(x => x.LDAId == ldaId).FirstOrDefault();
 
